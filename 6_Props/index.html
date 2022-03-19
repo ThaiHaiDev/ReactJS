@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="text/babel">
+
+            function App()  {
+                return (
+                    <div id="wrapper"> 
+                        <Post 
+                            title="Truyền đối số title vào component"
+                            title2="Đối số 3 là Array chứa các object "
+                            data={[{a:1}, {b:2}]}
+                        />
+                        <Post 
+                            title="Truyền đối số title vào component lần 2"
+                            title2="Đối số 3 là callback"
+                            callback={() => {
+                                
+                            }}
+                        />
+                        <Post 
+                            title="Truyền đối số title vào component lần 3"
+                            title2="Đối số truyền lần 3"
+                        />
+                    </div>
+                )
+            }
+
+            // React component
+            function Post(props) {
+                console.log(props)
+                return (
+                    <div className="posts-list">
+                        <div className="post-item">
+                            <label htmlFor="email">Email</label>
+                            <input id="email" />
+                            <img src="https://freetuts.net/upload/tut_post/images/2014/08/14/122/xay-dung-chuc-nang-scrollto-voi-jquery.gif"/>
+                            <h2 className="post-title">C#(.NET)</h2>
+                            <p className="post-desc">Ban co kien thuc ve C#</p>
+                            <p className="ost-published">{props.title}</p>
+                        </div>
+                    </div>
+                )
+            }
+
+            ReactDOM.render(<App />, document.getElementById('app'))
+        </script>
+     
+    </body>
+</html>

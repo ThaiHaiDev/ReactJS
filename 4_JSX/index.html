@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <div id="root-1"></div>
+
+        <script type="text/babel">
+            const reactCourse = 'ReactJS F8'
+            const courses = [
+                {
+                    name: 'HTML, CSS'
+                },
+                {
+                    name: 'Responsive web design'
+                },
+                {
+                    name: 'ReactJS'
+                }
+            ]
+            const ul = <ul>
+                {courses.map((course, index) => 
+                <li key={index}>{course.name}</li>)}  
+                </ul>
+            ReactDOM.render(ul, document.getElementById('root'))
+
+            const jsx = (
+                <React.Fragment>
+                    <h1>Heading 1</h1>
+                    <h2>Heading 2</h2>
+                </React.Fragment>
+            )
+            ReactDOM.render(jsx, document.getElementById('root-1'))
+       </script>
+     
+    </body>
+</html>

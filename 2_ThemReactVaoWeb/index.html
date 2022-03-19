@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    </head>
+    <body>
+        <script>
+            // Cách xài DOM
+            const h1DOM = document.createElement('h1')
+            h1DOM.title = 'Hello'
+            h1DOM.className = 'heading'
+            h1DOM.innerText = 'Hello guys!'
+            document.body.appendChild(h1DOM)
+
+            // Cách React -> DOM
+            // React.createElement(type, props, chidlren)
+            const h1React = React.createElement('h1', {
+                title: 'Hello',
+                className: 'heading'
+            }, 'Hello guys!')
+
+            console.dir(h1DOM)
+            console.log(h1React)
+        </script>
+     
+    </body>
+</html>

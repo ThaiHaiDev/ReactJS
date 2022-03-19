@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS</title>
+    </head>
+    <body>
+        <h1>CreateElement</h1>
+        <div id="root"></div>
+        <script>
+            const h1 = document.createElement('h1')
+            const root = document.getElementById('root')
+            h1.innerText = 'Hello'
+            h1.id = 'heading'
+            h1.className = 'test class-2'
+
+            Object.assign(h1.style, {  // Vế trái là object style, vế phải là truyền object mới
+                color: 'green',
+                backgroundColor: '#333'
+            })
+            root.appendChild(h1)
+        </script>
+        <!-- <script src="./app.js"> </script> -->
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <div id="practice"></div>
+
+        <script type="text/babel">
+
+            // Function
+            function Header() {  
+                return (
+                    <div className="header">New Header</div>
+                )
+            }
+
+            // Class
+            class Content extends React.Component { 
+                render() {
+                    return (
+                        <div className="content">New Content</div>
+                    )
+                }
+            }
+
+            const app = (
+                <div className="wrapper">
+                    <Header />  
+                    <Content />
+                    <div className="footer">Footer</div>
+                </div>
+            )
+
+            const post = (
+               <Post />
+            )
+
+            // Function
+            function Post() {
+                return (
+                    <div className="posts-list">
+                        <div className="post-item">
+                            <img src="https://freetuts.net/upload/tut_post/images/2014/08/14/122/xay-dung-chuc-nang-scrollto-voi-jquery.gif"/>
+                            <h2 className="post-title">C#(.NET)</h2>
+                            <p className="post-desc">Ban co kien thuc ve C#</p>
+                            <p className="ost-published">Hoc C# chac vao</p>
+                        </div>
+                    </div>
+                )
+            }
+
+            ReactDOM.render(app, document.getElementById('app'))
+            ReactDOM.render(post, document.getElementById('practice'))
+        </script>
+     
+    </body>
+</html>

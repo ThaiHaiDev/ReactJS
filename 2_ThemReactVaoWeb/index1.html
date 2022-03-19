@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    </head>
+    <body>
+        <script>
+            // Cách xài DOM
+            const ulDOM = document.createElement('ul')
+            const liDOM1 = document.createElement('li')
+            liDOM1.innerText = 'JavaScript'
+            const liDOM2 = document.createElement('li')
+            liDOM2.innerText = 'ReactJS'
+
+            ulDOM.appendChild(liDOM1)
+            ulDOM.appendChild(liDOM2)
+            document.body.appendChild(ulDOM)
+            // Cách React -> DOM
+            const ulReact = React.createElement(
+                'ul',
+                null,
+                React.createElement('li', null, 'JavaScript'),
+                React.createElement('li', null, 'ReactJS'))
+       
+            console.dir(ulDOM)
+            console.log(ulReact)
+        </script>
+     
+    </body>
+</html>
