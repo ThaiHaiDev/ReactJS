@@ -1,0 +1,50 @@
+import { useState } from 'react'
+
+function App() {  
+  
+
+  const [job, setJob] = useState('')
+  const [jobs, setJobs] = useState(() => {
+    const storageJobs = JSON.parse(localStorage.getItem('jobs'))
+    return storageJobs
+  }) // Nếu storageJobs null thì lấy [], lấy data từ storage
+
+  const handleSubmit = () => {
+    setJobs(prev => {
+      const newJobs = [...prev, job]
+      // Lưu lại vào json và lưu vào localStorage
+      const jsonJobs = JSON.stringify(newJobs)
+      localStorage.setItem('jobs', jsonJobs)
+
+      return newJobs
+    })
+    setJob('')
+  }
+  
+  const handleDelete = (job) => {
+    setJobs(prev => {
+      const jobsDelete = prev.filter(item => item !== job)
+      localStorage.setItem('jobs', JSON.stringify(jobsDelete))
+
+      return jobsDelete
+    })
+  }
+
+  return (
+    <div className="App" style={{ padding: 30 }}>
+      <input value={job} onChange={e => setJob(e.target.value)}/>
+      <button onClick={handleSubmit}>Add</button>
+      <ul>
+        {jobs.map((job, index) => (
+          <div key={index}>
+            <li>{job}</li>
+            <button onClick={() => handleDelete(job)}>Delete</button>
+          </div>
+          
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export default App;

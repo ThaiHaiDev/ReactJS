@@ -1,0 +1,68 @@
+import { useState } from 'react'
+
+// One-way binding là sửa data ở html là trong data đổi
+// Two way binding là sửa data ở data thì html cũng thay đổi
+const courses = [
+  {
+    id: 1,
+    name: 'JavaScript'
+  },
+  {
+    id: 2,
+    name: 'ReactJS'
+  },
+  {
+    id: 3,
+    name: 'NodeJS'
+  }
+]
+
+function App() {
+  const [checked, setChecked] = useState()
+  const [checkBox, setCheckBox] = useState([]);
+
+  const handleCheck = (id) => {
+    setCheckBox((prev) => {
+      const isCheck = checkBox.includes(id);
+      if (isCheck) {
+        return checkBox.filter((item) => item !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
+  };
+
+  console.log('Checked: ', checked)
+  console.log('Checkbox: ', checkBox)
+  const handleSubmit = () => {
+
+  }
+ 
+  return (
+    <div className="App" style={{ padding: 30 }}>
+
+      {/* Radio box */}
+      {courses.map(course => (
+        <div key={course.id}>
+          <input type="radio" 
+            checked={checked === course.id} // Chọn 1 thôi
+            onChange={() => setChecked(course.id)}/> {course.name}
+        </div>
+      ))}
+
+      {/* Check box */}
+      {courses.map((course) => (
+        <div key={course.id}>
+          <input
+              onChange={() => handleCheck(course.id)}
+              type="checkbox"
+              checked={checkBox.includes(course.id)}
+          /> {course.name}
+        </div>
+      ))}
+
+    </div>
+  )
+}
+
+export default App;
