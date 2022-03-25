@@ -1,0 +1,56 @@
+import { useState, useMemo, useRef } from 'react'
+import Content from './Content'
+
+// memo() : trách re-render 1 component không cần thiết
+// useMemo: tránh lặp lại 1 logic không cần thiết trong component
+
+
+function App() {  
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+  const [products, setProducts] = useState([])
+
+  const nameRef = useRef()
+  
+  const handleSubmit = () => {
+      setProducts([...products, {
+        name,
+        price: parseInt(price) // Chuyển sang Int
+      }])
+      setName('')
+      setPrice('')
+      nameRef.current.focus()  // Sau khi add thì nó xóa input và focus lại
+  }
+
+  // Dùng useMemo vì mỗi lần nhập gì vào nó cũng tính tổng lại, chỉ cần products thay đổi mới cần tính tổng lại thôi
+  const total = useMemo(() => {
+    const kq = products.reduce((result, prod) => result + prod.price, 0)
+    console.log('Tính lại')
+    return kq
+  }, [products])
+  
+  return (
+    <div className="App" style={{ padding: 30 }}>
+        <input 
+          ref={nameRef}
+          value={name}
+          placeholder="Enter name..."
+          onChange={e => setName(e.target.value)}
+        /> <br/>
+        <input 
+          value={price}
+          placeholder="Enter price..."
+          onChange={e => setPrice(e.target.value)}
+        /> <br/>
+        <button onClick={handleSubmit}>Add</button> <br/>
+        Total: {total}
+        <ul>
+          {products.map((product, index) => (
+            <li key={index}>{product.name} - {product.price}</li>
+          ))}
+        </ul>
+    </div>
+  )
+}
+
+export default App;

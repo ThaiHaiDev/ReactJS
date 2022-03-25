@@ -1,18 +1,30 @@
-import { useState } from 'react'
-import Content from './Content'
+import { useContext } from 'react'
+import { useStore, actions } from './store'
 
-// Update DOM
-// Call API
-// Listen DOM events: Scroll, Resize
-// Cleanup: Remove listener / Unsubscribe ; Clear timer
+function App() {
+  const [state, dispatch] = useStore()
+  const { todos, todoInput } = state
 
-function App() {  
-  const [show, setShow] = useState(false)
-
+  const handleAdd = () => {
+      dispatch(actions.addTodo(todoInput))
+  }
+  
   return (
     <div className="App" style={{ padding: 30 }}>
-      <button onClick={() => setShow(!show)}>Toggle</button>
-      {show && <Content />}  
+        <input 
+          value={todoInput}
+          placeholder="Enter todo..."
+          onChange={e => {
+            dispatch(actions.setTodoInput(e.target.value))
+          }}
+        />
+        <button onClick={handleAdd}>Add</button>
+        <ul>
+          {todos.map((todo, index) => (
+            <li key={index}>{todo} <span>&times;</span>
+            </li>
+          ))}
+        </ul>
     </div>
   )
 }

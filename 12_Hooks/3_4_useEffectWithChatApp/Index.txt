@@ -4,14 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { StoreProvider} from './store'
+// Fake comment
+function emitComment(id) {
+  setInterval(() => {
+    window.dispatchEvent(    // Tự phát 1 event theo ý của mình
+      new CustomEvent(`lesson-${id}`, {
+        detail: `Nội dung comment của lesson ${id}`
+      })
+    )  
+  }, 2000)
+}
+emitComment(1)  // Phát event ra 2s 1 lần ở lesson 1
+emitComment(2)  // Phát event ra 2s 1 lần ở lesson 2
+emitComment(3)  // Phát event ra 2s 1 lần ở lesson 3
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreProvider>
-      <App />
-    </StoreProvider>
-    
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,26 @@
+import { useEffect, useState } from "react"
+
+// Closure
+// Timers: setInterval, setTimeout, clearInterval, clearTime
+// useState
+
+
+const tabs = ['posts', 'comments', 'albums']
+function Content() {  // Thực hiện return rồi mới thực hiện useEffect
+    const [countdown, setCountdown] = useState(180)
+
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            setCountdown(prev => prev - 1) // Không dùng biến ngoài phạm vi
+        }, 1000)
+
+        return () => clearInterval(timerId)
+    }, [])
+    return(
+        <div>
+            {countdown >= 0 &&
+            <h1>{countdown}</h1>} 
+        </div>
+    )
+}
+export default Content

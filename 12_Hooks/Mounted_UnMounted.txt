@@ -1,0 +1,2 @@
+Gắn component vào là mounted
+Gỡ component ra là unmounted

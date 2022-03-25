@@ -1,0 +1,30 @@
+import { useState, memo } from 'react'
+import Content from './Content'
+
+// 1. memo() -> Higher Order Component (HOC)
+// 2. useCallback()
+
+// Hay sử dụng: Hooks, HOC, Render props
+
+// Component con không cần xài mà thèn cha vẫn xài dư thừa, Content trong trường hợp này
+// Không xài mà vẫn re-render. Nên ứng dụng memo
+
+// Memo nếu không có props nào thay đổi thì nó không sử dụng component re-render
+
+function App() {  
+  const [count, setCount] = useState(0)
+  
+  const increase = () => {
+    setCount(count + 1)
+  }
+
+  return (
+    <div className="App" style={{ padding: 30 }}>
+        <Content />
+        <h1>{count}</h1>
+        <button onClick={increase}>Click me</button>
+    </div>
+  )
+}
+
+export default App;

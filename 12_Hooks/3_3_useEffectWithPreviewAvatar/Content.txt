@@ -1,0 +1,37 @@
+import { useEffect, useState } from "react"
+
+// -----------------
+// Cleanup function luôn được gọi trước khi callback được gọi (trừ lần mounted)
+
+function Content() {  // Thực hiện return rồi mới thực hiện useEffect
+    const [avatar, setAvatar] = useState()
+
+    // Nếu chọn hình lần thứ 2 trở đi thì nó vẫn lưu hình đầu nên rò rỉ bộ nhớ. Nên dùng useEffect để cleanup
+    useEffect(() => {
+        return () => {
+            avatar && URL.revokeObjectURL(avatar.preview) // Vì ban đầu avatar undefine nên nó cleanup trước khi callback nên nó lỗi, phải check avatar trước
+        }
+    }, [avatar])
+
+    const handlePreviewAvatar = (e) => {
+        const file = e.target.files[0]
+        console.log(URL.createObjectURL(file)); // Lấy url để xem ảnh upload lên
+        file.preview = URL.createObjectURL(file)
+
+        setAvatar(file)
+    }
+
+    return (
+        <div>
+            <input 
+                type="file"
+                // multiple  :  Cho phép chọn nhiều ảnh
+                onChange={handlePreviewAvatar}
+            />
+            {avatar && (
+                <img src={avatar.preview} alt="" width="80%" />
+            )}
+        </div>
+    )
+}
+export default Content

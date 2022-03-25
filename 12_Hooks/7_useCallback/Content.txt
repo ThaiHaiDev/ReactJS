@@ -1,0 +1,13 @@
+import React, { memo } from "react"
+
+function Content({ onIncrease }) {  // props là function thay đổi do mỗi lần render là tạo ra function mới có địa chỉ mới
+
+    console.log('re-render')  // Vậy nên phải xài useCallback
+    return (
+        <div>
+            <h2>HELLO ANH EM</h2>
+            <button onClick={onIncrease}>Click me</button>
+        </div>
+    )
+}
+export default memo(Content)

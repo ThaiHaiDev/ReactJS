@@ -1,0 +1,48 @@
+import { useReducer } from 'react'
+import Content from './Content'
+
+// Trường hợp useState
+// 1. Init state: 0
+// 2. Actions: Up (state + 1) / Down (state - 1)
+
+// Trường hợp useReducer
+// 1. Init state: 0
+// 2. Actions: Up (state + 1) / Down (state - 1)
+// 3. Reducer
+// 4. Dispatch
+
+// Init state
+const initState = 0
+
+// Actions
+const upAction = 'up'
+const downAction = 'down'
+
+// Reducer
+const reducer = (state, action) => {
+  switch(action) {
+    case upAction:
+      return state + 1
+    case downAction:
+      return state - 1
+    default:
+      throw new Error('Invalid action')
+  }
+}
+
+function App() {  
+  // Khi component App lần đầu chạy, nó chạy useReducer, nó nhận reducer và tạm để đấy đã, nó chưa vội gọi
+  // Nó nhận giá trị khởi tạo initState và trả về [] là count
+  // dispatch kích hoạt action nào sẽ thực hiện
+  const [count, dispatch] = useReducer(reducer, initState) 
+  
+  return (
+    <div className="App" style={{ padding: 30 }}>
+        <h1>{count}</h1>
+        <button onClick={() => dispatch(downAction)}>Down</button>
+        <button onClick={() => dispatch(upAction)}>Up</button>
+    </div>
+  )
+}
+
+export default App;
