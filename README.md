@@ -23,7 +23,9 @@ Learn ReactJS
 
 |__11. Create React App
 
-|__12. Hooks |__ useState
+|__12. Hooks 
+
+             |__ useState
 
              |__ useEffect
 
@@ -47,7 +49,7 @@ Learn ReactJS
 
 |__15. Router v5
 
-|__16_ Router v6
+|__16. Router v6
 
 |__17. API Module
 
