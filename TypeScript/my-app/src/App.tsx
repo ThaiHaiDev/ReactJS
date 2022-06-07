@@ -9,9 +9,13 @@ function App() {
     name: 'Test',
     age: 18
   }
+  
+  const truyenCha = (newValue : String) => {
+      console.log('New value: ',newValue)
+  }
   return (
     <div className="App">
-      <Student student={test} />
+      <Student onClick={truyenCha} student={test} />
     </div>
   );
 }
